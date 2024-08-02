@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd">  
+  
+    <hibernate-mapping package = "com.model">  
+        <class name="Patient" table="patient">  
+        <id name = "id" type = "int" column = "id">  
+            <generator class="identity"></generator>  
+        </id>  
+            
+        <property name = "firstName" column = "first_name" not-null="true"></property>
+        <property name = "lastName" column = "last_name" not-null="true"></property>        
+        <property name = "type" column = "type" not-null="true"></property> 
+            
+        <set name = "diagnosis" table = "patient_diagnosis" inverse = "false" lazy = "false">
+            <key column = "id"/>
+        <many-to-many column = "diagnosis_id" class = "com.model.Diagnosis"/>
+        </set>
+  </class>  
+            
+ </hibernate-mapping>  
